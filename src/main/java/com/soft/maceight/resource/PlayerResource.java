@@ -1,6 +1,5 @@
 package com.soft.maceight.resource;
 
-import com.soft.maceight.domain.Player;
 import com.soft.maceight.service.PlayerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,7 @@ public class PlayerResource {
     private final PlayerService service;
 
     @GetMapping("/pairs/{sum}")
-    public ResponseEntity<List<Player>> getPairs(@PathVariable Integer sum) {
+    public ResponseEntity<List<String>> getPairs(@PathVariable Integer sum) {
         return ResponseEntity.ok(service.getPairs(sum));
     }
 }

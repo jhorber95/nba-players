@@ -3,36 +3,43 @@ package com.soft.maceight.service;
 import com.soft.maceight.domain.Player;
 import com.soft.maceight.service.dto.PlayerDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PlayerService {
 
     private final RestTemplate restTemplate;
 
-    public List<Player> getPairs(Integer sum) {
+    public List<String> getPairs(Integer sum) {
 
-        List<Player> pairs = new ArrayList<>();
-        PlayerDto data = getData();
+        List<Player> data = getData().getValues();
 
-        HashSet<Integer> s = new HashSet<>();
-        for (Player player : data.getValues()) {
+        Map<Integer, Integer> map = new HashMap<>();
 
+        List<String> coupleString =new ArrayList<>();
+        for (int i = 0; i < data.size(); i++) {
+            Player player = data.get(i);
             int temp = sum - player.getHIn();
 
-            if (s.contains(temp)) {
-                pairs.add(player);
+            if (map.containsKey(temp)) {
+                log.info(data.get(map.get(temp)) + " " + player);
+
+                coupleString.add(getFullName(data.get(map.get(temp))) + " - " + getFullName(player));
             }
-            s.add(player.getHIn());
+            // store index of the current element in the map
+            map.put(player.getHIn(), i);
         }
-        return pairs;
+        return coupleString;
     }
 
     public PlayerDto getData() {
@@ -41,5 +48,9 @@ public class PlayerService {
             return response.getBody();
         }
         return new PlayerDto();
+    }
+
+    private String getFullName(Player player) {
+        return player.getFirstName() + " " + player.getLastName();
     }
 }
