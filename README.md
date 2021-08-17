@@ -1,20 +1,45 @@
-# Getting Started
+# Readme
 
 ### Reference Documentation
 
-For further reference, please consider the following sections:
+Before you can build this project, you must install and configure the following dependencies on your machine:
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.5.3/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.5.3/maven-plugin/reference/html/#build-image)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.5.3/reference/htmlsingle/#boot-features-developing-web-applications)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.5.3/reference/htmlsingle/#using-boot-devtools)
+1. [Maven][]: We use Maven to build and download Java dependencies
+2. Java 8 or upper
 
-### Guides
 
-The following guides illustrate how to use some features concretely:
+## Building
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
+### Packaging as jar
 
+To build the final jar and optimize the application for production, run:
+
+```
+./mvnw clean install
+
+```
+
+### Run app
+
+Execute next command: 
+
+```
+./mvnw spring-boot:run
+
+```
+
+### Check functionality
+
+There is an api, you must navigate to [http://localhost:8080/pairs/{{height}}](http://localhost:8080pairs/139) in your browser or a rest client app.
+
+
+### Testing
+
+To launch your application's tests, run:
+
+```
+./mvnw verify
+```
+
+
+[Maven]: https://maven.apache.org/download.cgi
