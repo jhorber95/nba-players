@@ -1,7 +1,6 @@
 package com.soft.maceight.resource;
 
 import com.soft.maceight.MacEightApplication;
-import com.soft.maceight.domain.Player;
 import com.soft.maceight.service.PlayerService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
