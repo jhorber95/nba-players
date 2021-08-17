@@ -26,19 +26,21 @@ public class PlayerService {
 
         Map<Integer, Integer> map = new HashMap<>();
 
-        List<String> coupleString =new ArrayList<>();
-        for (int i = 0; i < data.size(); i++) {
-            Player player = data.get(i);
+        List<String> coupleString = new ArrayList<>();
+
+        int cont = 0;
+        for (Player player : data) {
             int temp = sum - player.getHIn();
 
             if (map.containsKey(temp)) {
                 log.info(data.get(map.get(temp)) + " " + player);
-
                 coupleString.add(getFullName(data.get(map.get(temp))) + " - " + getFullName(player));
             }
             // store index of the current element in the map
-            map.put(player.getHIn(), i);
+            map.put(player.getHIn(), cont);
+            cont++;
         }
+
         return coupleString;
     }
 

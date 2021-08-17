@@ -40,7 +40,6 @@ class PlayerServiceTest {
 
         when(restTemplate.getForEntity("https://mach-eight.uc.r.appspot.com/",  PlayerDto.class)).thenReturn(response);
 
-
         assertThat(service.getPairs(139).size()).isEqualTo(2);
     }
 
