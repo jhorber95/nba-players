@@ -2,6 +2,7 @@ package com.soft.maceight.service;
 
 import com.soft.maceight.domain.Player;
 import com.soft.maceight.service.dto.PlayerDto;
+import com.soft.maceight.service.error.BadRequestAlertException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +40,10 @@ public class PlayerService {
             // store index of the current element in the map
             map.put(player.getHIn(), cont);
             cont++;
+        }
+
+        if (coupleString.isEmpty()) {
+            throw new BadRequestAlertException("No matches found");
         }
 
         return coupleString;
