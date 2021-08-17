@@ -22,5 +22,4 @@ public class PlayerResource {
     public ResponseEntity<List<Player>> getPairs(@PathVariable Integer sum) {
         return ResponseEntity.ok(service.getPairs(sum));
     }
-
 }

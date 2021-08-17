@@ -17,7 +17,7 @@ public class PlayerService {
 
     private final RestTemplate restTemplate;
 
-    public List<Player> getPairs(int sum) {
+    public List<Player> getPairs(Integer sum) {
 
         List<Player> pairs = new ArrayList<>();
         PlayerDto data = getData();
@@ -35,7 +35,7 @@ public class PlayerService {
         return pairs;
     }
 
-    private PlayerDto getData() {
+    public PlayerDto getData() {
         ResponseEntity<PlayerDto> response = restTemplate.getForEntity("https://mach-eight.uc.r.appspot.com/", PlayerDto.class);
         if (response.getStatusCode().is2xxSuccessful()) {
             return response.getBody();
